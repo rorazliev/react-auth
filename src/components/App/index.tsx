@@ -1,7 +1,13 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, Suspense, useEffect } from 'react';
+import {
+  BrowserRouter as Router, Switch, Redirect, Route,
+} from 'react-router-dom';
 import ignoreRejection from '../../helpers/ignoreRejection';
+import { useSelector } from '../../redux/store';
 
 const App: React.FC = (): ReactElement => {
+  const isAuth = useSelector((state) => Boolean(state.auth.token));
+
   // Handle unhandled rejections
   useEffect(() => {
     window.addEventListener('unhandledrejection', ignoreRejection);
@@ -10,7 +16,28 @@ const App: React.FC = (): ReactElement => {
     };
   });
 
-  return <div />;
+  return (
+    <Router>
+      <Suspense fallback={null}>
+        <Switch>
+          {
+          isAuth ? (
+            <>
+              <Route exact path="/" render={() => null} />
+              <Route path="*" render={() => <Redirect to="/" />} />
+            </>
+          ) : (
+            <>
+              <Route exact path="/signin" render={() => null} />
+              <Route exact path="/signup" render={() => null} />
+              <Route path="*" render={() => <Redirect to="/signin" />} />
+            </>
+          )
+        }
+        </Switch>
+      </Suspense>
+    </Router>
+  );
 };
 
 export default App;
