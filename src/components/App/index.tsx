@@ -2,6 +2,7 @@ import React, { ReactElement, Suspense, useEffect } from 'react';
 import {
   BrowserRouter as Router, Switch, Redirect, Route,
 } from 'react-router-dom';
+import Loader from '../Loader';
 import ignoreRejection from '../../helpers/ignoreRejection';
 import { useSelector } from '../../redux/store';
 
@@ -18,7 +19,7 @@ const App: React.FC = (): ReactElement => {
 
   return (
     <Router>
-      <Suspense fallback={null}>
+      <Suspense fallback={<Loader />}>
         <Switch>
           {
           isAuth ? (
