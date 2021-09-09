@@ -1,10 +1,14 @@
-import React, { ReactElement, Suspense, useEffect } from 'react';
+import React, {
+  lazy, ReactElement, Suspense, useEffect,
+} from 'react';
 import {
   BrowserRouter as Router, Switch, Redirect, Route,
 } from 'react-router-dom';
 import Loader from '../Loader';
 import ignoreRejection from '../../helpers/ignoreRejection';
 import { useSelector } from '../../redux/store';
+
+const Signin = lazy(() => import('../Signin'));
 
 const App: React.FC = (): ReactElement => {
   const isAuth = useSelector((state) => Boolean(state.auth.token));
@@ -29,7 +33,7 @@ const App: React.FC = (): ReactElement => {
             </>
           ) : (
             <>
-              <Route exact path="/signin" render={() => null} />
+              <Route exact path="/signin" component={Signin} />
               <Route exact path="/signup" render={() => null} />
               <Route path="*" render={() => <Redirect to="/signin" />} />
             </>
