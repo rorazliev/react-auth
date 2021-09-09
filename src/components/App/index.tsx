@@ -9,6 +9,7 @@ import ignoreRejection from '../../helpers/ignoreRejection';
 import { useSelector } from '../../redux/store';
 
 const Signin = lazy(() => import('../Signin'));
+const Signup = lazy(() => import('../Signup'));
 
 const App: React.FC = (): ReactElement => {
   const isAuth = useSelector((state) => Boolean(state.auth.token));
@@ -34,7 +35,7 @@ const App: React.FC = (): ReactElement => {
           ) : (
             <>
               <Route exact path="/signin" component={Signin} />
-              <Route exact path="/signup" render={() => null} />
+              <Route exact path="/signup" component={Signup} />
               <Route path="*" render={() => <Redirect to="/signin" />} />
             </>
           )
