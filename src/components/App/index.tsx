@@ -8,6 +8,7 @@ import Loader from '../Loader';
 import ignoreRejection from '../../helpers/ignoreRejection';
 import { useSelector } from '../../redux/store';
 
+const Dashboard = lazy(() => import('../Dashboard'));
 const Signin = lazy(() => import('../Signin'));
 const Signup = lazy(() => import('../Signup'));
 
@@ -29,7 +30,7 @@ const App: React.FC = (): ReactElement => {
           {
           isAuth ? (
             <>
-              <Route exact path="/" render={() => null} />
+              <Route exact path="/" component={Dashboard} />
               <Route path="*" render={() => <Redirect to="/" />} />
             </>
           ) : (
