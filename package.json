@@ -1,7 +1,29 @@
 {
   "name": "react-auth",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "A token-based authentication in React, Redux, and TypeScript",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rorazliev/react-auth.git"
+  },
+  "keywords": [
+    "authentication",
+    "login",
+    "jwt",
+    "json-web-token",
+    "react",
+    "react-redux",
+    "redux",
+    "register",
+    "strapi",
+    "typescript"
+  ],
+  "author": "Ruslan Orazliev (https://linkedin.com/in/rorazliev)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rorazliev/react-auth/issues"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
